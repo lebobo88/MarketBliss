@@ -1,0 +1,78 @@
+name: advertising-commercial
+description: Advertising / commercial / broadcast / OOH profile — reach- and brand-lift-driven.
+industry_tags: [advertising, commercial, broadcast, OOH, agency]
+
+# Default squad dispatch order — production-heavy industries route through marketing-production
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-production
+  - marketing-ops
+
+# KPI targets
+kpis:
+  primary:
+    - { name: reach_unique_pct, target: 0.60, direction: maximize }
+    - { name: effective_frequency, target: 3.5, direction: maximize }
+    - { name: grps, target: 250, direction: maximize }
+    - { name: brand_lift_pct, target: 0.08, direction: maximize }
+    - { name: aided_recall_pct, target: 0.35, direction: maximize }
+  guardrails:
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+    - { name: wear_out_index, threshold: 0.7, direction: max }
+    - { name: share_of_voice_loss, threshold: 0.05, direction: max }
+
+# Channel mix priors
+channel_mix:
+  paid_search: 0.05
+  paid_social: 0.25
+  display: 0.25
+  organic_seo: 0.03
+  content: 0.05
+  email_lifecycle: 0.02
+  partnerships: 0.15
+  events: 0.20
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: false }
+  regulated-claims-review: { required: true, hitl: false }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: true, hitl: true }
+
+# HITL policy
+hitl:
+  external_publish_required: false
+  budget_above_usd: 250000
+  high_risk_categories: [comparative-claims, celebrity-likeness, music-sync-rights, broadcast-clearance, OOH-permitting]
+
+# Funnel template
+funnel:
+  - awareness: reach_unique
+  - frequency: effective_frequency
+  - recall: aided_recall
+  - consideration: brand_lift
+  - intent: purchase_intent_lift
+  - purchase: incremental_sales
+
+# Attribution method preference
+attribution:
+  primary: mmm
+  acceptable_alternatives: [incrementality, brand-lift-study]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [editorial-luxury, industrial-brutalist]
+
+# Cadence
+cadence:
+  campaign_review: biweekly
+  budget_reallocation: weekly
+
+# Notes
+notes: |
+  Advertising / commercial is a reach-and-frequency motion measured by brand-lift and
+  recall rather than direct response. MMM + brand-lift studies are the only sound
+  attribution path at broadcast / OOH scale. IP-clearance (music sync, celebrity likeness,
+  broadcast clearance) is a hard gate; HITL required on talent + music.

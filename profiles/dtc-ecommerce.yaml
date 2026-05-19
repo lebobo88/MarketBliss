@@ -1,0 +1,77 @@
+name: dtc-ecommerce
+description: Direct-to-consumer e-commerce profile — ROAS-driven, weekly reallocation, repeat-rate focused.
+industry_tags: [dtc, ecommerce, retail, consumer]
+
+# Default squad dispatch order — production is opt-in (request explicitly via /production-brief)
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-ops
+
+# KPI targets
+kpis:
+  primary:
+    - { name: blended_roas, target: 3.5, direction: maximize }
+    - { name: aov_usd, target: 85, direction: maximize }
+    - { name: repeat_purchase_rate_90d, target: 0.30, direction: maximize }
+    - { name: site_conversion_rate, target: 0.035, direction: maximize }
+    - { name: cac_payback_months, target: 6, direction: minimize }
+  guardrails:
+    - { name: blended_roas, threshold: 2.0, direction: min }
+    - { name: return_rate, threshold: 0.15, direction: max }
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+
+# Channel mix priors
+channel_mix:
+  paid_search: 0.25
+  paid_social: 0.35
+  display: 0.05
+  organic_seo: 0.10
+  content: 0.05
+  email_lifecycle: 0.15
+  partnerships: 0.04
+  events: 0.01
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: false }
+  regulated-claims-review: { required: false, hitl: false }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: true, hitl: false }
+
+# HITL policy
+hitl:
+  external_publish_required: false
+  budget_above_usd: 50000
+  high_risk_categories: [made-in-USA, organic-claims, sustainability-claims, performance-claims]
+
+# Funnel template
+funnel:
+  - awareness: impressions
+  - interest: ctr
+  - consideration: pdp_views
+  - intent: add_to_cart
+  - purchase: orders
+  - retention: repeat_purchase_rate
+
+# Attribution method preference
+attribution:
+  primary: mta
+  acceptable_alternatives: [incrementality, mmm]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [editorial-luxury, ethereal-glass]
+
+# Cadence
+cadence:
+  campaign_review: weekly
+  budget_reallocation: weekly
+
+# Notes
+notes: |
+  DTC is a high-velocity, ROAS-first motion: short consideration cycles, immediate
+  conversion signals, and weekly budget reallocation are the norm. MTA + incrementality
+  testing replace MMM at small scale. Repeat-rate and AOV growth quietly drive contribution
+  margin more than top-line ROAS chasing.

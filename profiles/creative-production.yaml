@@ -1,0 +1,78 @@
+name: creative-production
+description: Creative production studios — film, photography, cinematography, creator economy. Portfolio- and IP-driven.
+industry_tags: [media, film, photography, cinematography, production, creator-economy]
+
+# Default squad dispatch order — production-heavy industries route through marketing-production
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-production
+  - marketing-ops
+
+# KPI targets
+kpis:
+  primary:
+    - { name: portfolio_quality_score, target: 8.5, direction: maximize }
+    - { name: booking_rate, target: 0.25, direction: maximize }
+    - { name: repeat_client_rate, target: 0.45, direction: maximize }
+    - { name: gallery_feature_count_quarterly, target: 3, direction: maximize }
+    - { name: referral_rate, target: 0.40, direction: maximize }
+  guardrails:
+    - { name: ip_clearance_violation_count, threshold: 0, direction: max }
+    - { name: talent_release_missing_count, threshold: 0, direction: max }
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+
+# Channel mix priors
+channel_mix:
+  paid_search: 0.05
+  paid_social: 0.15
+  display: 0.02
+  organic_seo: 0.15
+  content: 0.10
+  email_lifecycle: 0.05
+  partnerships: 0.18
+  events: 0.30
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: false }
+  regulated-claims-review: { required: false, hitl: false }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: true, hitl: true }
+
+# HITL policy
+hitl:
+  external_publish_required: false
+  budget_above_usd: 40000
+  high_risk_categories: [unreleased-talent, unlicensed-music, location-permissions, minor-on-camera, stock-asset-clearance]
+
+# Funnel template
+funnel:
+  - discovery: portfolio_views
+  - interest: inquiry_submitted
+  - consideration: discovery_call_booked
+  - intent: scope_call_completed
+  - purchase: booking_confirmed
+  - retention: repeat_booking_rate
+
+# Attribution method preference
+attribution:
+  primary: last-touch
+  acceptable_alternatives: [mta, incrementality]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [industrial-brutalist, editorial-luxury, ethereal-glass]
+
+# Cadence
+cadence:
+  campaign_review: monthly
+  budget_reallocation: monthly
+
+# Notes
+notes: |
+  Creative production is portfolio-led: a single gallery feature or signature project
+  moves the booking needle more than any paid campaign. Events and partnerships dominate
+  the channel mix. IP-clearance is non-negotiable — talent releases, music licensing,
+  and location permissions all require explicit HITL approval before publish.

@@ -1,0 +1,30 @@
+name: production-team
+description: Convert an approved CreativeBrief into a production-ready ShotList + Schedule + Clearance package, then hand off to Hydra creative squad.
+profiles_compatible: [b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
+stages:
+  - kind: brief-ingest
+    gate_type: spec
+    generator: { agent: executive-producer, primary: claude }
+    judge:     { tier: cross_vendor, rubric: creative-brief-completeness@1, model_pref: gemini }
+  - kind: shot-list
+    gate_type: design
+    generator: { agent: shot-list-designer, primary: claude }
+    judge:     { tier: cross_vendor, rubric: shot-list-coverage@1, model_pref: gemini }
+  - kind: schedule-and-budget
+    gate_type: contract
+    generator: { agent: executive-producer, primary: claude }
+    judge:     { tier: same_vendor, rubric: production-plan-completeness@1 }
+  - kind: talent-ip-clearance
+    gate_type: contract
+    generator: { agent: talent-ip-coordinator, primary: claude }
+    judge:     { tier: cross_vendor, rubric: ip-clearance@1, model_pref: gemini }
+  - kind: asset-job-handoff
+    gate_type: contract
+    generator: { agent: executive-producer, primary: claude }
+    judge:     { tier: same_vendor }
+  - kind: docs
+    gate_type: docs_polish
+    generator: { agent: docs-author, primary: claude }
+    judge:     { tier: same_vendor }
+taxonomy_required: ["4.4", "4.7", "4.9", "4.11", "4.13"]
+missability_required: [decision-logging, ip-clearance-evidence, production-budget-declared]

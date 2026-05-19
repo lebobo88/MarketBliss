@@ -1,0 +1,79 @@
+name: regulated-health-finance
+description: Regulated industries (health, finance, insurance, pharma, fintech) — compliance-first, HITL-mandatory.
+industry_tags: [health, finance, regulated, fintech, healthtech, pharma, insurance]
+
+# Default squad dispatch order — production is opt-in (request explicitly via /production-brief)
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-ops
+
+# KPI targets
+kpis:
+  primary:
+    - { name: compliance_score, target: 1.0, direction: maximize }
+    - { name: complaint_rate, target: 0.001, direction: minimize }
+    - { name: trust_score, target: 8.5, direction: maximize }
+    - { name: constrained_conversion_rate, target: 0.015, direction: maximize }
+  guardrails:
+    - { name: regulated_claim_violation_count, threshold: 0, direction: max }
+    - { name: complaint_rate, threshold: 0.001, direction: max }
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+    - { name: consent_failure_rate, threshold: 0.005, direction: max }
+
+# Channel mix priors
+channel_mix:
+  paid_search: 0.10
+  paid_social: 0.05
+  display: 0.05
+  organic_seo: 0.25
+  content: 0.25
+  email_lifecycle: 0.25
+  partnerships: 0.04
+  events: 0.01
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: true }
+  regulated-claims-review: { required: true, hitl: true }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: true, hitl: true }
+
+# HITL policy
+hitl:
+  external_publish_required: true
+  budget_above_usd: 25000
+  high_risk_categories: [medical-claims, financial-advice, ESG-claims, made-in-USA, drug-interactions, fiduciary-claims, HIPAA-PHI, GDPR-PII]
+
+# Funnel template
+funnel:
+  - awareness: organic_reach
+  - education: content_engagement
+  - consideration: lead_with_consent
+  - evaluation: qualified_consult
+  - intent: application_started
+  - purchase: enrollment_completed
+  - retention: policy_renewal_rate
+
+# Attribution method preference
+attribution:
+  primary: incrementality
+  acceptable_alternatives: [mmm]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [minimalist-editorial]
+
+# Cadence
+cadence:
+  campaign_review: monthly
+  budget_reallocation: monthly
+
+# Notes
+notes: |
+  Regulated profiles invert the usual marketing posture: compliance is the primary KPI,
+  and every external publish requires HITL approval. MTA is avoided because consent /
+  cookie restrictions invalidate path data; incrementality + MMM are the only defensible
+  attribution methods. Brand-voice and regulated-claims rules are critical-risk under
+  TheEights evolution policy and never auto-commit.

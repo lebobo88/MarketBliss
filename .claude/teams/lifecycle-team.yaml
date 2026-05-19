@@ -1,0 +1,30 @@
+name: lifecycle-team
+description: Segment → journey → message → cadence → measurement → docs. Onboarding / retention / winback lifecycle build.
+profiles_compatible: [b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
+stages:
+  - kind: segment
+    gate_type: design
+    generator: { agent: audience-persona, primary: claude }
+    judge:     { tier: cross_vendor, rubric: marketing-brief-clarity@1, model_pref: gemini }
+  - kind: journey
+    gate_type: design
+    generator: { agent: lifecycle-crm, primary: claude }
+    judge:     { tier: cross_vendor, rubric: creative-brief-completeness@1, model_pref: gemini }
+  - kind: message
+    gate_type: code_style
+    generator: { agent: contextual-copywriter, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+  - kind: cadence
+    gate_type: design
+    generator: { agent: lifecycle-crm, primary: claude }
+    judge:     { tier: same_vendor, rubric: creative-brief-completeness@1 }
+  - kind: measurement
+    gate_type: contract
+    generator: { agent: analytics-experimentation, primary: claude }
+    judge:     { tier: cross_vendor, rubric: attribution-soundness@1, model_pref: gemini }
+  - kind: docs
+    gate_type: docs_polish
+    generator: { agent: docs-author, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+taxonomy_required: ["4.2", "4.5", "4.10", "4.13"]
+missability_required: ["decision-logging", "audience-evidence", "frequency-cap-declared"]

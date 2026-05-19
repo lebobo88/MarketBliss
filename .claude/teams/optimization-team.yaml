@@ -1,0 +1,30 @@
+name: optimization-team
+description: Hypothesis → test-design → MMM/MTA analysis → recommendation → governance → docs. Experimentation + measurement loop.
+profiles_compatible: [b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
+stages:
+  - kind: hypothesis
+    gate_type: spec
+    generator: { agent: analytics-experimentation, primary: claude }
+    judge:     { tier: cross_vendor, rubric: experimentation-design@1, model_pref: gemini }
+  - kind: test-design
+    gate_type: design
+    generator: { agent: analytics-experimentation, primary: claude }
+    judge:     { tier: cross_vendor, rubric: experimentation-design@1, model_pref: gemini }
+  - kind: analysis
+    gate_type: contract
+    generator: { agent: analytics-experimentation, primary: claude }
+    judge:     { tier: cross_vendor, rubric: attribution-soundness@1, model_pref: gemini }
+  - kind: recommendation
+    gate_type: design
+    generator: { agent: media-buyer-bidder, primary: claude }
+    judge:     { tier: same_vendor, rubric: attribution-soundness@1 }
+  - kind: governance
+    gate_type: contract
+    generator: { agent: brand-safety-compliance, primary: claude }
+    judge:     { tier: same_vendor, rubric: regulated-claims-check@1 }
+  - kind: docs
+    gate_type: docs_polish
+    generator: { agent: docs-author, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+taxonomy_required: ["4.5", "4.10", "4.12", "4.13"]
+missability_required: ["decision-logging", "experimentation-power-declared", "attribution-method-justified"]

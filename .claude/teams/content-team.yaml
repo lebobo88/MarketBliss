@@ -1,0 +1,30 @@
+name: content-team
+description: Brief → SEO outline → draft → brand-safety → polish → docs. Content production with governance gate.
+profiles_compatible: [b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
+stages:
+  - kind: brief
+    gate_type: contract
+    generator: { agent: campaign-strategist, primary: claude }
+    judge:     { tier: cross_vendor, rubric: creative-brief-completeness@1, model_pref: gemini }
+  - kind: seo-outline
+    gate_type: design
+    generator: { agent: seo-analyst, primary: claude }
+    judge:     { tier: cross_vendor, rubric: marketing-brief-clarity@1, model_pref: gemini }
+  - kind: draft
+    gate_type: code_style
+    generator: { agent: contextual-copywriter, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+  - kind: brand-safety
+    gate_type: contract
+    generator: { agent: brand-safety-compliance, primary: claude }
+    judge:     { tier: same_vendor, rubric: regulated-claims-check@1 }
+  - kind: polish
+    gate_type: docs_polish
+    generator: { agent: brand-narrative, primary: claude }
+    judge:     { tier: cross_vendor, rubric: brand-consistency@1, model_pref: gemini }
+  - kind: docs
+    gate_type: docs_polish
+    generator: { agent: docs-author, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+taxonomy_required: ["4.3", "4.4", "4.13"]
+missability_required: ["decision-logging", "regulated-claims-coverage", "brand-voice-evidence"]

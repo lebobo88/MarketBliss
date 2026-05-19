@@ -1,0 +1,36 @@
+# Runtime artifacts — re-created per session / per campaign
+output/
+progress/events.jsonl
+progress/pipeline-state.json
+progress/checkpoint.json
+progress/config.json
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local environment
+.env
+.env.local
+*.local
+
+# Generated images / preview artifacts in repo root
+*.png
+*.jpg
+*.jpeg
+*.gif
+!docs/**/*.png
+!docs/**/*.jpg
+
+# Reports / temp
+*.tmp
+*.bak

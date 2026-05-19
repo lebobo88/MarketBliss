@@ -1,0 +1,79 @@
+name: b2b-saas
+description: B2B SaaS / enterprise software profile — pipeline-driven, content-led, LTV:CAC discipline.
+industry_tags: [b2b, saas, enterprise, software]
+
+# Default squad dispatch order — production is opt-in (request explicitly via /production-brief)
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-ops
+
+# KPI targets — used by analytics-experimentation + campaign-strategist
+kpis:
+  primary:
+    - { name: ltv_cac_ratio, target: 3.0, direction: maximize }
+    - { name: pipeline_velocity_usd_per_day, target: 25000, direction: maximize }
+    - { name: mql_to_sal_conversion, target: 0.35, direction: maximize }
+    - { name: sal_to_sql_conversion, target: 0.55, direction: maximize }
+    - { name: sql_to_opp_conversion, target: 0.45, direction: maximize }
+    - { name: pql_to_opp_conversion, target: 0.30, direction: maximize }
+  guardrails:
+    - { name: cac_payback_months, threshold: 18, direction: max }
+    - { name: blended_cpl_usd, threshold: 350, direction: max }
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+
+# Channel mix priors — used by media-buyer-bidder
+channel_mix:
+  paid_search: 0.25
+  paid_social: 0.10
+  display: 0.05
+  organic_seo: 0.20
+  content: 0.20
+  email_lifecycle: 0.08
+  partnerships: 0.10
+  events: 0.02
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: false }
+  regulated-claims-review: { required: false, hitl: false }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: false, hitl: false }
+
+# HITL policy
+hitl:
+  external_publish_required: false
+  budget_above_usd: 100000
+  high_risk_categories: [security-claims, compliance-claims, comparative-competitor-claims]
+
+# Funnel template
+funnel:
+  - awareness: organic_reach
+  - interest: mql_volume
+  - consideration: sal_volume
+  - evaluation: sql_volume
+  - intent: opp_created
+  - purchase: closed_won_arr
+  - expansion: net_revenue_retention
+
+# Attribution method preference
+attribution:
+  primary: mmm
+  acceptable_alternatives: [mta, incrementality]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [minimalist-editorial, soft-structuralism]
+
+# Cadence
+cadence:
+  campaign_review: monthly
+  budget_reallocation: monthly
+
+# Notes
+notes: |
+  B2B SaaS is a long-cycle, multi-stakeholder buying motion where unit-economic
+  discipline (LTV:CAC ≥ 3, CAC payback < 18 months) trumps short-term ROAS chasing.
+  Pipeline is the unit of progress, not impressions. Quarterly reviews align to fiscal
+  cadence; MMM is preferred because deal cycles outlast cookie windows.

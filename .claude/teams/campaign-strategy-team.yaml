@@ -1,0 +1,38 @@
+name: campaign-strategy-team
+description: End-to-end campaign strategy — discover → research → persona → SEO → strategy → brief → governance → docs.
+profiles_compatible: [b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
+stages:
+  - kind: discover
+    gate_type: spec
+    generator: { agent: spec-author, primary: claude }
+    judge:     { tier: cross_vendor, rubric: marketing-brief-clarity@1, model_pref: gemini }
+  - kind: market-research
+    gate_type: design
+    generator: { agent: market-intelligence, primary: claude }
+    judge:     { tier: cross_vendor, rubric: attribution-soundness@1, model_pref: gemini }
+  - kind: persona
+    gate_type: design
+    generator: { agent: audience-persona, primary: claude }
+    judge:     { tier: same_vendor, rubric: marketing-brief-clarity@1 }
+  - kind: seo
+    gate_type: design
+    generator: { agent: seo-analyst, primary: claude }
+    judge:     { tier: cross_vendor, rubric: marketing-brief-clarity@1, model_pref: gemini }
+  - kind: strategy
+    gate_type: design
+    generator: { agent: campaign-strategist, primary: claude }
+    judge:     { tier: cross_vendor, rubric: creative-brief-completeness@1, model_pref: gemini }
+  - kind: brief
+    gate_type: contract
+    generator: { agent: campaign-strategist, primary: claude }
+    judge:     { tier: cross_vendor, rubric: creative-brief-completeness@1, model_pref: gemini }
+  - kind: governance
+    gate_type: contract
+    generator: { agent: brand-safety-compliance, primary: claude }
+    judge:     { tier: same_vendor, rubric: regulated-claims-check@1 }
+  - kind: docs
+    gate_type: docs_polish
+    generator: { agent: docs-author, primary: claude }
+    judge:     { tier: same_vendor, rubric: brand-consistency@1 }
+taxonomy_required: ["4.1", "4.2", "4.3", "4.4", "4.13", "4.14"]
+missability_required: ["decision-logging", "regulated-claims-coverage", "audience-evidence"]

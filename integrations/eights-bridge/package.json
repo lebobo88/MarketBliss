@@ -1,0 +1,11 @@
+{
+  "name": "@marketbliss/eights-bridge",
+  "version": "0.1.0",
+  "description": "Stub adapter for registering MarketBliss with TheEights memory + evolution substrate.",
+  "private": true,
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "register": "echo 'v1 stub — use mcp__eights__eights_identity_register_project directly'"
+  }
+}

@@ -1,0 +1,77 @@
+name: professional-services
+description: Professional services profile — consulting / agency / law / accounting. Reputation- and referral-driven.
+industry_tags: [professional-services, consulting, agency, law, accounting]
+
+# Default squad dispatch order — production is opt-in (request explicitly via /production-brief)
+default_squads:
+  - marketing-research
+  - marketing-strategy
+  - marketing-creative
+  - marketing-ops
+
+# KPI targets
+kpis:
+  primary:
+    - { name: lead_quality_score, target: 7.5, direction: maximize }
+    - { name: booking_rate, target: 0.20, direction: maximize }
+    - { name: nps, target: 50, direction: maximize }
+    - { name: thought_leadership_reach, target: 25000, direction: maximize }
+    - { name: referral_share_of_pipeline, target: 0.35, direction: maximize }
+  guardrails:
+    - { name: brand_safety_violation_rate, threshold: 0.0, direction: max }
+    - { name: client_complaint_rate, threshold: 0.02, direction: max }
+
+# Channel mix priors
+channel_mix:
+  paid_search: 0.10
+  paid_social: 0.08
+  display: 0.02
+  organic_seo: 0.20
+  content: 0.30
+  email_lifecycle: 0.10
+  partnerships: 0.15
+  events: 0.05
+
+# Gates
+gates:
+  brand-consistency: { required: true, hitl: false }
+  regulated-claims-review: { required: true, hitl: true }
+  budget-cap: { required: true, hitl: true, threshold_pct_over: 5 }
+  attribution-soundness: { required: true, hitl: false }
+  ip-clearance: { required: false, hitl: false }
+
+# HITL policy
+hitl:
+  external_publish_required: false
+  budget_above_usd: 75000
+  high_risk_categories: [legal-advice-disclaimers, financial-advice-disclaimers, case-study-confidentiality]
+
+# Funnel template
+funnel:
+  - awareness: thought_leadership_reach
+  - interest: content_engagement
+  - consideration: inquiry_submitted
+  - evaluation: discovery_call_booked
+  - intent: proposal_requested
+  - purchase: engagement_won
+  - retention: repeat_engagement_rate
+
+# Attribution method preference
+attribution:
+  primary: mta
+  acceptable_alternatives: [last-touch, mmm]
+
+# Aesthetic archetypes that fit
+recommended_aesthetics: [editorial-luxury, soft-structuralism]
+
+# Cadence
+cadence:
+  campaign_review: monthly
+  budget_reallocation: monthly
+
+# Notes
+notes: |
+  Professional services are a trust-and-reputation motion: thought leadership and
+  referral pipelines dominate paid acquisition. Content + organic-SEO + partnerships
+  do the heavy lifting. Long consideration cycles mean MTA fights last-touch bias;
+  disclose appropriately when measuring.
