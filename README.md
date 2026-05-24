@@ -22,7 +22,7 @@
 
 ## What is MarketBliss?
 
-MarketBliss is the **operational marketing organization** for the [AiAppDeployments](https://github.com/lebobo88) ecosystem. It provides a team of 15 specialist AI agents — organized into 5 coordinated squads — that collaborate to execute the full marketing lifecycle: from competitive research and audience segmentation, through campaign strategy and creative production, to media buying, lifecycle automation, and attribution measurement.
+MarketBliss is the **operational marketing organization** for the [Hydra](https://github.com/lebobo88/Hydra) ecosystem. It provides a team of 15 specialist AI agents — organized into 5 coordinated squads — that collaborate to execute the full marketing lifecycle: from competitive research and audience segmentation, through campaign strategy and creative production, to media buying, lifecycle automation, and attribution measurement.
 
 **How it works standalone:** A user issues a directive (e.g., *"Build a Q3 demand-gen campaign for our B2B SaaS product"*), and the `marketing-supervisor` orchestrator routes it through the appropriate squads. Research agents analyze the competitive landscape and audience. Strategy agents build the campaign brief with KPIs. Creative agents write copy and define brand narrative. Production agents plan shoots, clear talent/IP, and hand off asset specs. Ops agents allocate media budgets and design measurement plans. Every step is governed by compliance gates and audit trails.
 
@@ -281,7 +281,7 @@ Escalations use the `HITLRequest` envelope with subtypes: `campaign_signoff`, `b
 ### Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI or IDE extension
-- Access to the [AiAppDeployments](https://github.com/lebobo88) ecosystem projects
+- Access to the [Hydra](https://github.com/lebobo88/Hydra) ecosystem projects
 
 ### 1. Register with TheEights
 
@@ -378,6 +378,6 @@ Full plan in [`PROJECT_MASTER.md`](PROJECT_MASTER.md) §11.
 
 ## License & Ownership
 
-Internal [AiAppDeployments](https://github.com/lebobo88) project.
+Internal [Hydra](https://github.com/lebobo88/Hydra) ecosystem project.
 
 Owner: rob.hasselbach@gmail.com
