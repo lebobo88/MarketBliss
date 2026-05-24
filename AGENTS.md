@@ -13,7 +13,7 @@ MarketBliss is the **operational marketing organization** for the AiAppDeploymen
 MarketBliss is **not**:
 
 - The strategic CMO. That role lives in `C:\AiAppDeployments\ExecutiveSuite\.claude\agents\cmo.md`. MarketBliss receives `CSuiteDecisionPacket` / `CreativeBrief` envelopes from that CMO and emits `DecisionRecord` envelopes back.
-- The creative-production studio. Image / video / cinematography asset **generation** is delegated to Hydra's existing `creative` squad (`C:\AiAppDeployments\Hydra\squads\creative\`) which fronts RLM-CLI-Starter (ComfyUI, gemini-image, frontend-design). MarketBliss's own `marketing-production` squad owns the production *planning* layer (shot lists, talent / IP releases, locations, schedules, budgets, post-production briefs) and hands the resulting `ShotList` + `AssetJob` envelope pair downstream to that Hydra squad.
+- The creative-production studio. Image / video / cinematography asset **generation** is delegated to Hydra's existing `creative` squad (`C:\AiAppDeployments\Hydra\squads\creative\`) which fronts RLM-Creative (ComfyUI, gemini-image, frontend-design). MarketBliss's own `marketing-production` squad owns the production *planning* layer (shot lists, talent / IP releases, locations, schedules, budgets, post-production briefs) and hands the resulting `ShotList` + `AssetJob` envelope pair downstream to that Hydra squad.
 - A pipeline runner. Hydra is the orchestrator. Pair-programmer is the code-quality harness. TheEights is the memory + evolution substrate.
 
 ---
@@ -26,7 +26,7 @@ MarketBliss is **not**:
 | ExecutiveSuite (C-suite) | `C:\AiAppDeployments\ExecutiveSuite\` | Strategic CMO upstream; MarketBliss is the operational layer beneath it. |
 | TheEights (memory + evolution) | `C:\AiAppDeployments\TheEights\` | All campaign decisions, briefs, KPI outcomes flow into episodic memory. Prompt / persona / rubric drift uses Eights' propose → evaluate → commit → rollback flow. |
 | Pair-programmer (engineering harness) | `C:\AiAppDeployments\pair-programmer\` | Source of agent / skill / team / hooks conventions. Borrowed verbatim. |
-| RLM-CLI-Starter (creative production) | `C:\AiAppDeployments\RLM-CLI-Starter\` | Downstream asset-production delegate via Hydra `creative` squad. Source of `marketing-expertise`, `aesthetic-archetypes`, `creative-brief-protocol`. |
+| RLM-Creative (creative production) | `C:\AiAppDeployments\RLM-Creative\` | Downstream asset-production delegate via Hydra `creative` squad. Source of `marketing-expertise`, `aesthetic-archetypes`, `creative-brief-protocol`. |
 
 Cross-squad communication uses the typed envelopes defined in `C:\AiAppDeployments\Hydra\hydra_core\schemas.py`:
 
@@ -93,7 +93,7 @@ Skills under `.claude/skills/<name>/SKILL.md`. User-invocable unless noted. Agen
 
 | Skill | Purpose |
 |---|---|
-| `marketing-expertise` | Brand Positioning Framework, E-E-A-T, 7Ps, funnel stages, pricing tiering, content taxonomy, luxury-brand principles. Cloned + reskinned from RLM-CLI-Starter. |
+| `marketing-expertise` | Brand Positioning Framework, E-E-A-T, 7Ps, funnel stages, pricing tiering, content taxonomy, luxury-brand principles. Cloned + reskinned from RLM-Creative. |
 | `marketing-business-context` | Identity / services / segments / competitive positioning / strategic goals, parameterized by industry profile. Cloned from RLM `media-business`. |
 | `aesthetic-archetypes` | 5 archetype bundles (Ethereal Glass / Editorial Luxury / Soft Structuralism / Minimalist Editorial / Industrial Brutalist) with surfaces / typography / motion / texture specs. |
 | `marketing-attribution` | MMM, MTA, incrementality, lift tests, attribution-method selection. Deterministic formulas. |

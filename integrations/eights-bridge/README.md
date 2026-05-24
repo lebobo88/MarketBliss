@@ -39,7 +39,7 @@ A real adapter that mirrors the existing TheEights bridges under
 
 - `pp-bridge.ts` (pair-programmer)
 - `execsuite-bridge.ts` (ExecutiveSuite)
-- `rlm-bridge.ts` (RLM-CLI-Starter siblings)
+- `rlm-bridge.ts` (RLM-Creative siblings)
 
 When v2 lands, this stub is moved/copied into
 `C:\AiAppDeployments\TheEights\daemon\src\adapters\marketbliss-bridge.ts` and

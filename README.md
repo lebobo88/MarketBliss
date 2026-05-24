@@ -26,7 +26,7 @@ MarketBliss is the **operational marketing organization** for the [Hydra](https:
 
 **How it works standalone:** A user issues a directive (e.g., *"Build a Q3 demand-gen campaign for our B2B SaaS product"*), and the `marketing-supervisor` orchestrator routes it through the appropriate squads. Research agents analyze the competitive landscape and audience. Strategy agents build the campaign brief with KPIs. Creative agents write copy and define brand narrative. Production agents plan shoots, clear talent/IP, and hand off asset specs. Ops agents allocate media budgets and design measurement plans. Every step is governed by compliance gates and audit trails.
 
-**How it works in the ecosystem:** MarketBliss sits beneath [ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite)'s strategic CMO, receiving high-level `CSuiteDecisionPacket` envelopes and returning `DecisionRecord` results. [Hydra](https://github.com/lebobo88/Hydra) orchestrates MarketBliss's 5 squad packs alongside other domain squads. [TheEights](https://github.com/lebobo88/TheEights) provides persistent episodic memory and prompt/persona evolution. When creative assets need to be generated (images, video, cinematography), MarketBliss emits `ShotList` + `AssetJob` envelopes that [Hydra](https://github.com/lebobo88/Hydra) routes to [RLM-CLI-Starter](https://github.com/lebobo88/RLM-CLI-Starter)'s creative production pipeline. MarketBliss owns production *planning* — not asset *generation*.
+**How it works in the ecosystem:** MarketBliss sits beneath [ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite)'s strategic CMO, receiving high-level `CSuiteDecisionPacket` envelopes and returning `DecisionRecord` results. [Hydra](https://github.com/lebobo88/Hydra) orchestrates MarketBliss's 5 squad packs alongside other domain squads. [TheEights](https://github.com/lebobo88/TheEights) provides persistent episodic memory and prompt/persona evolution. When creative assets need to be generated (images, video, cinematography), MarketBliss emits `ShotList` + `AssetJob` envelopes that [Hydra](https://github.com/lebobo88/Hydra) routes to [RLM-Creative](https://github.com/lebobo88/RLM-Creative)'s creative production pipeline. MarketBliss owns production *planning* — not asset *generation*.
 
 ---
 
@@ -106,7 +106,7 @@ graph LR
     MB["<b>MarketBliss</b><br/><i>Operational Marketing</i><br/>15 agents · 5 squads"]
     HY["<b>Hydra</b><br/><i>Orchestrator</i><br/>Routes & dispatches"]
     TE["<b>TheEights</b><br/><i>Memory + Evolution</i><br/>Episodic · Semantic"]
-    RLM["<b>RLM-CLI-Starter</b><br/><i>Creative Production</i><br/>ComfyUI · Gemini Image"]
+    RLM["<b>RLM-Creative</b><br/><i>Creative Production</i><br/>ComfyUI · Gemini Image"]
     PP["<b>pair-programmer</b><br/><i>Engineering Harness</i><br/>Conventions & quality"]
 
     ES -->|"CSuiteDecisionPacket"| MB
@@ -358,7 +358,7 @@ CLAUDE.md         Claude-specific @AGENTS.md import shim
 | **ExecutiveSuite** | Strategic CMO upstream — issues `CSuiteDecisionPacket` directives | [github.com/lebobo88/ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite) |
 | **TheEights** | Memory + evolution substrate — episodic, semantic, and prompt drift | [github.com/lebobo88/TheEights](https://github.com/lebobo88/TheEights) |
 | **pair-programmer** | Engineering harness — source of agent/skill/team conventions | [github.com/lebobo88/pair-programmer](https://github.com/lebobo88/pair-programmer) |
-| **RLM-CLI-Starter** | Creative production — generates assets from `ShotList`/`AssetJob` envelopes | [github.com/lebobo88/RLM-CLI-Starter](https://github.com/lebobo88/RLM-CLI-Starter) |
+| **RLM-Creative** | Creative production — generates assets from `ShotList`/`AssetJob` envelopes | [github.com/lebobo88/RLM-Creative](https://github.com/lebobo88/RLM-Creative) |
 
 ---
 
