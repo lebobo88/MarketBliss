@@ -1,4 +1,6 @@
 name: Marketing Research
+version: 1.0.0
+deprecated_after: null   # ISO date or null; Iolaus refuses dispatch on/after this date
 description: >
   Competitive intelligence, audience segmentation, SEO / content-gap mapping.
   Produces MarketBrief envelopes consumed by marketing-strategy and downstream

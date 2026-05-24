@@ -23,7 +23,7 @@
 **Commercial logic**: enablement + leverage. Each MarketBliss-served campaign frees ExecutiveSuite + the human operator from repetitive operational marketing work. Direct cost: model spend per campaign. Indirect benefit: faster experimentation, broader industry coverage.
 
 **Success metrics**:
-- 4 Hydra squads discoverable and routable within 1 week of router-patch application.
+- 5 Hydra squads discoverable and routable within 1 week of router-patch application.
 - 1 end-to-end campaign brief (CSuiteDecisionPacket → DecisionRecord) round-trips cleanly through MarketBliss within 2 weeks.
 - Brand-safety gate catches ≥ 95% of regulated-claim violations on synthetic test set within 4 weeks.
 
@@ -198,7 +198,7 @@ Verification matrix (run before declaring v1 complete):
 ## 15. AI and agentic system controls
 
 - **Risk classification**: per EU AI Act Article 9, MarketBliss is **limited-risk** in B2B SaaS / DTC / ProServ / Creative-Production / Advertising profiles; **high-risk-adjacent** in Regulated profile (financial / medical claims).
-- **Model cards**: each of the 12 agents declares its `model` + `maxTurns` + `skills` in frontmatter — that's the v1 model-card stand-in. Full model cards in v2.
+- **Model cards**: each of the 15 agents declares its `model` + `maxTurns` + `skills` in frontmatter — that's the v1 model-card stand-in. Full model cards in v2.
 - **HITL policy**: see `AGENTS.md` §7. Regulated profile always HITL on external publish.
 - **Evaluation harness**: synthetic regulated-content test set is a v2 deliverable.
 

@@ -11,7 +11,7 @@ skills:
 
 # Marketing Retrospective — MarketBliss
 
-Run a structured retrospective across all 12 specialist agents. Each agent contributes a section on what happened, what worked, what didn't, and what to evolve.
+Run a structured retrospective across all 15 specialist agents. Each agent contributes a section on what happened, what worked, what didn't, and what to evolve.
 
 **Scope**: $ARGUMENTS
 
@@ -25,7 +25,7 @@ Run a structured retrospective across all 12 specialist agents. Each agent contr
 ### 2. Marketing-Supervisor Orchestration
 - Mint `workflow_id` (format: `mb-retro-<YYYYMMDD>-<scope>`).
 - Read episodic memory and `progress/events.jsonl` for the scoped window.
-- Dispatch a section-write to each of the 12 agents.
+- Dispatch a section-write to each of the 15 agents.
 
 ### 3. Per-Agent Section Template
 Each agent contributes a section with this shape:

@@ -1,4 +1,6 @@
 name: Marketing Strategy
+version: 1.0.0
+deprecated_after: null   # ISO date or null; Iolaus refuses dispatch on/after this date
 description: >
   Campaign strategy, integrated briefs, hypothesis framing, KPI architecture,
   channel-mix decisions. Consumes MarketBrief; emits CreativeBrief for the

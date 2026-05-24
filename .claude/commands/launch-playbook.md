@@ -13,7 +13,7 @@ skills:
 
 # Launch Playbook — MarketBliss
 
-Run the full MarketBliss lifecycle for a product / feature / market launch: research → strategy → creative → ops. Dispatched as a Hydra campaign across all 4 squads in sequence with explicit handoffs.
+Run the full MarketBliss lifecycle for a product / feature / market launch: research → strategy → creative → ops. Dispatched as a Hydra campaign across all 5 squads in sequence with explicit handoffs.
 
 **Launch**: $ARGUMENTS
 

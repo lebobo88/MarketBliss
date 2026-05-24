@@ -22,7 +22,7 @@ MarketBliss is **not**:
 
 | System | Path | MarketBliss role |
 |---|---|---|
-| Hydra (orchestrator) | `C:\AiAppDeployments\Hydra\` | Squad-pack consumer — 4 `marketing-*` squads register here. |
+| Hydra (orchestrator) | `C:\AiAppDeployments\Hydra\` | Squad-pack consumer — 5 `marketing-*` squads register here. |
 | ExecutiveSuite (C-suite) | `C:\AiAppDeployments\ExecutiveSuite\` | Strategic CMO upstream; MarketBliss is the operational layer beneath it. |
 | TheEights (memory + evolution) | `C:\AiAppDeployments\TheEights\` | All campaign decisions, briefs, KPI outcomes flow into episodic memory. Prompt / persona / rubric drift uses Eights' propose → evaluate → commit → rollback flow. |
 | Pair-programmer (engineering harness) | `C:\AiAppDeployments\pair-programmer\` | Source of agent / skill / team / hooks conventions. Borrowed verbatim. |
@@ -39,15 +39,15 @@ Cross-squad communication uses the typed envelopes defined in `C:\AiAppDeploymen
 
 ```
 .claude/
-  agents/      12 specialist persona markdown files
-  skills/      13 reusable skill bundles (SKILL.md per dir)
-  commands/    8 slash-command entry points
-  teams/       4 pair-programmer-style team YAMLs (stage / gate / generator / judge)
-squads/        4 Hydra squad packs (one squad.yaml per dir)
+  agents/      15 specialist persona markdown files
+  skills/      15 reusable skill bundles (SKILL.md per dir)
+  commands/    9 slash-command entry points
+  teams/       5 pair-programmer-style team YAMLs (stage / gate / generator / judge)
+squads/        5 Hydra squad packs (one squad.yaml per dir)
 profiles/      6 industry profile YAMLs
 integrations/
   eights-bridge/     adapter stub for TheEights project registration + episodic-memory writes
-  hydra-router-patch.md   instructions for adding 4 new keyword fingerprints to Hydra router
+  hydra-router-patch.md   instructions for adding 5 new keyword fingerprints to Hydra router
 output/        all generated artifacts land here (mirrors RLM convention)
   executive/marketing|creative|board/
   research/
@@ -67,7 +67,7 @@ README.md      operator quickstart
 
 | Slug | Family | Authority | Model | Hydra squad | Purpose (one line) |
 |---|---|---|---|---|---|
-| `marketing-supervisor` | Orchestrator | gatekeeper | opus | (all) | Routes work across the 4 squads, synthesizes board-style multi-perspective recommendations. |
+| `marketing-supervisor` | Orchestrator | gatekeeper | opus | (all) | Routes work across the 5 squads, synthesizes board-style multi-perspective recommendations. |
 | `market-intelligence` | Research | advisory | sonnet | research | Competitive intel, TAM/SAM/SOM, market sizing, trend analysis. |
 | `audience-persona` | Research | advisory | sonnet | research | Quantitative segmentation, JTBD, persona archetypes, intent mapping. |
 | `seo-analyst` | Research | execute | sonnet | research | Pillar/cluster maps, SERP analysis, content-gap mapping, entity SEO. |
@@ -140,7 +140,7 @@ HITL escalations use the standard `HITLRequest` envelope (subtype: `campaign_sig
 ## 8. Memory & evolution (TheEights)
 
 - **Project ID**: `marketbliss`. **Domain**: `marketing`. Default scopes: `["public", "team:marketing", "sensitive:no"]`. Regulated-industry runs upgrade to `sensitive:yes`.
-- **Actors**: each of the 12 agent slugs registers as a distinct actor.
+- **Actors**: each of the 15 agent slugs registers as a distinct actor.
 - **Episodic memory** writes:
   - Every CreativeBrief / MarketBrief / DecisionRecord written.
   - Every campaign KPI snapshot at run finalize.
@@ -154,7 +154,7 @@ The adapter under `integrations/eights-bridge/` is a stub in v1; daemon hookup i
 
 ## 9. Hydra wiring
 
-Each of the 4 squad packs uses `entrypoint: claude-skill` and `source_pack: C:\AiAppDeployments\MarketBliss`, mirroring the existing `creative` squad pattern. Router keywords are documented in `integrations/hydra-router-patch.md` — the user applies the patch to `C:\AiAppDeployments\Hydra\hydra_core\router.py:_KEYWORDS`.
+Each of the 5 squad packs uses `entrypoint: claude-skill` and `source_pack: C:\AiAppDeployments\MarketBliss`, mirroring the existing `creative` squad pattern. Router keywords are documented in `integrations/hydra-router-patch.md` — the user applies the patch to `C:\AiAppDeployments\Hydra\hydra_core\router.py:_KEYWORDS`.
 
 ---
 

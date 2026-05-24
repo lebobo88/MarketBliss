@@ -123,7 +123,7 @@ RoutingDecision), check that:
    declares `industries: [marketing, b2b, dtc, ...]` in its `squad.yaml`;
    the router boost at router.py ~line 96 picks these up automatically. No
    code change needed — just confirm the squad YAMLs are correct.
-2. **LLM-fallback prompt update** — when adding 4 new domains, update the
+2. **LLM-fallback prompt update** — when adding 5 new domains, update the
    LLM classifier's prompt to include the new squad descriptions so the
    fallback path is also accurate.
 3. **Per-squad weight tuning** — if marketing prompts consistently

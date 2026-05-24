@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0366d6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6f42c1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d73a49;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0366d6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6f42c1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Icon: stylized network/hub representing multi-agent orchestration -->
+  <g transform="translate(12, 10)">
+    <!-- Central hub -->
+    <circle cx="30" cy="30" r="10" fill="url(#iconGrad)" opacity="0.9"/>
+    <!-- Outer nodes -->
+    <circle cx="8" cy="12" r="5" fill="#28a745" opacity="0.8"/>
+    <circle cx="52" cy="12" r="5" fill="#0366d6" opacity="0.8"/>
+    <circle cx="8" cy="48" r="5" fill="#e36209" opacity="0.8"/>
+    <circle cx="52" cy="48" r="5" fill="#d73a49" opacity="0.8"/>
+    <circle cx="30" cy="56" r="5" fill="#6f42c1" opacity="0.8"/>
+    <!-- Connecting lines -->
+    <line x1="30" y1="30" x2="8" y2="12" stroke="#28a745" stroke-width="1.5" opacity="0.4"/>
+    <line x1="30" y1="30" x2="52" y2="12" stroke="#0366d6" stroke-width="1.5" opacity="0.4"/>
+    <line x1="30" y1="30" x2="8" y2="48" stroke="#e36209" stroke-width="1.5" opacity="0.4"/>
+    <line x1="30" y1="30" x2="52" y2="48" stroke="#d73a49" stroke-width="1.5" opacity="0.4"/>
+    <line x1="30" y1="30" x2="30" y2="56" stroke="#6f42c1" stroke-width="1.5" opacity="0.4"/>
+    <!-- Central dot -->
+    <circle cx="30" cy="30" r="4" fill="white" opacity="0.9"/>
+  </g>
+
+  <!-- Text -->
+  <text x="82" y="52" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="url(#grad)" letter-spacing="-1">
+    MarketBliss
+  </text>
+</svg>
