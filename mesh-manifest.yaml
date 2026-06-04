@@ -1,0 +1,88 @@
+apiVersion: agentmesh/v1
+kind: SiblingManifest
+
+metadata:
+  id: marketbliss
+  displayName: "MarketBliss Marketing Platform"
+  version: "0.1.0"
+  description: "Operational marketing AI platform (15 agents, 5 squads). Thin MCP shim via Hydra marketbliss server."
+  # backendsKey: intended gateway flat-dict key (not yet in ~/.hydra/backends.json).
+  # Will be added by the merge pass once mcp_servers/marketbliss is authored in Hydra.
+  # See manifests/MARKETBLISS-SURFACE.md for the surface decision rationale.
+  backendsKey: "marketbliss"
+
+runtime:
+  type: python-langgraph
+  # Intended spawn: python -m mcp_servers.marketbliss (mirrors executive_suite/senate/xenia/rlm_creative pattern).
+  # The mcp_servers/marketbliss/ module DOES NOT YET EXIST in Hydra; it must be authored
+  # in P9 following the _pack_shim pattern. See manifests/MARKETBLISS-SURFACE.md.
+  entrypoint: "mcp_servers/marketbliss/__main__.py"
+  cwd: "C:/AiAppDeployments/Hydra"
+  # Env: mirrors the pattern of other pack-shim servers.
+  # HYDRA_MB_ROOT points to the MarketBliss pack root (consistent with HYDRA_ES_ROOT etc.)
+  env:
+    PYTHONPATH: "C:/AiAppDeployments/Hydra"
+    HYDRA_MB_ROOT: "C:/AiAppDeployments/MarketBliss"
+  healthProbe:
+    type: mcp-tool-call
+    # Intended: "mb.ping" mirrors es.ping / senate.ping / rlm.ping / xenia.ping.
+    # Defined in the planned server.py at Hydra/mcp_servers/marketbliss/server.py.
+    tool: "mb.ping"
+    intervalMs: 20000
+    timeoutMs: 8000
+    failureThreshold: 3
+
+mcp:
+  endpoint:
+    type: stdio
+  # INTENDED tool names following the _pack_shim pattern for a pack at HYDRA_MB_ROOT.
+  # Modelled on executive_suite/server.py (which has roster + skill + command + output + ping).
+  # MarketBliss has .claude/agents/, .claude/skills/, .claude/commands/ layout (AGENTS.md §3).
+  # Output convention: output/<domain>/<topic>-YYYY-MM-DD.md (AGENTS.md §6).
+  # Source evidence for layout: MarketBliss/AGENTS.md §3 (directory layout).
+  # The "mb.*" prefix mirrors the existing namespace conventions.
+  # NOTE: these tool names are PLANNED (not yet in a live server.py). They match the
+  # pack_shim pattern exactly. See manifests/MARKETBLISS-SURFACE.md §Tool-names.
+  tools:
+    - "mb.roster.list"
+    - "mb.agent.get"
+    - "mb.skill.list"
+    - "mb.skill.get"
+    - "mb.command.list"
+    - "mb.command.get"
+    - "mb.output.write"
+    - "mb.output.read"
+    - "mb.ping"
+
+lifecycle:
+  startupDependencies:
+    - "hydra"
+    - "executive-suite"
+  startTimeoutMs: 30000
+  gracefulShutdownMs: 10000
+  crashLoopBreaker:
+    threshold: 5
+    windowMs: 60000
+
+audit:
+  # "mb.output.read" retrieves marketing output artifacts for audit stitching.
+  # Formal audit federation routes through TheEights per governance precedence.
+  # See manifests/GOVERNANCE-ROUTING.md §marketbliss for details.
+  exportTool: "mb.output.read"
+  dedupeKeyField: "relative"
+
+governance:
+  # Constitution path: relative to runtime.cwd (C:/AiAppDeployments/Hydra).
+  # Destination after merge pass: C:/AiAppDeployments/MarketBliss/CONSTITUTION.md
+  # (authored at manifests/constitutions/marketbliss.CONSTITUTION.md — see README).
+  # Path traversal from Hydra cwd:
+  # resolve(join("C:/AiAppDeployments/Hydra","../MarketBliss/CONSTITUTION.md"))
+  # = C:/AiAppDeployments/MarketBliss/CONSTITUTION.md (correct).
+  # Same dotdot-traversal friction as xenia/rlm-creative; see GOVERNANCE-ROUTING.md §validator-friction.
+  constitutionPath: "../MarketBliss/CONSTITUTION.md"
+  # marketbliss server has no dedicated attest tool.
+  # "mb.ping" confirms MCP connectivity only.
+  # Formal constitution hash attestation routes through TheEights
+  # (eights.constitution.attest with consumer="marketbliss") per governance precedence.
+  # See manifests/GOVERNANCE-ROUTING.md §marketbliss.
+  attestTool: "mb.ping"
