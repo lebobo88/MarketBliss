@@ -1,6 +1,6 @@
 # MarketBliss — Cross-Tool Behavioral Contract
 
-This file is the cross-tool behavioral contract for every AI agent (Claude Code, Codex, Gemini, Cursor, Copilot, Hydra squad runners, ExecutiveSuite orchestrators) that opens a session inside `C:\AiAppDeployments\MarketBliss\`. Read it before doing anything else.
+This file is the cross-tool behavioral contract for every AI agent (Claude Code, Codex, Gemini, Cursor, Copilot, Hydra squad runners, ExecutiveSuite orchestrators) that opens a session inside `<AIAPP_BASE>/MarketBliss/`. Read it before doing anything else.
 
 > Sibling tool-specific shims (e.g. `CLAUDE.md`) import this file with `@AGENTS.md`. Change conventions here, not there.
 
@@ -12,8 +12,8 @@ MarketBliss is the **operational marketing organization** for the AiAppDeploymen
 
 MarketBliss is **not**:
 
-- The strategic CMO. That role lives in `C:\AiAppDeployments\ExecutiveSuite\.claude\agents\cmo.md`. MarketBliss receives `CSuiteDecisionPacket` / `CreativeBrief` envelopes from that CMO and emits `DecisionRecord` envelopes back.
-- The creative-production studio. Image / video / cinematography asset **generation** is delegated to Hydra's existing `creative` squad (`C:\AiAppDeployments\Hydra\squads\creative\`) which fronts RLM-Creative (ComfyUI, gemini-image, frontend-design). MarketBliss's own `marketing-production` squad owns the production *planning* layer (shot lists, talent / IP releases, locations, schedules, budgets, post-production briefs) and hands the resulting `ShotList` + `AssetJob` envelope pair downstream to that Hydra squad.
+- The strategic CMO. That role lives in `<AIAPP_BASE>/ExecutiveSuite/.claude/agents/cmo.md`. MarketBliss receives `CSuiteDecisionPacket` / `CreativeBrief` envelopes from that CMO and emits `DecisionRecord` envelopes back.
+- The creative-production studio. Image / video / cinematography asset **generation** is delegated to Hydra's existing `creative` squad (`<AIAPP_BASE>/Hydra/squads/creative/`) which fronts RLM-Creative (ComfyUI, gemini-image, frontend-design). MarketBliss's own `marketing-production` squad owns the production *planning* layer (shot lists, talent / IP releases, locations, schedules, budgets, post-production briefs) and hands the resulting `ShotList` + `AssetJob` envelope pair downstream to that Hydra squad.
 - A pipeline runner. Hydra is the orchestrator. Pair-programmer is the code-quality harness. TheEights is the memory + evolution substrate.
 
 ---
@@ -22,13 +22,13 @@ MarketBliss is **not**:
 
 | System | Path | MarketBliss role |
 |---|---|---|
-| Hydra (orchestrator) | `C:\AiAppDeployments\Hydra\` | Squad-pack consumer — 5 `marketing-*` squads register here. |
-| ExecutiveSuite (C-suite) | `C:\AiAppDeployments\ExecutiveSuite\` | Strategic CMO upstream; MarketBliss is the operational layer beneath it. |
-| TheEights (memory + evolution) | `C:\AiAppDeployments\TheEights\` | All campaign decisions, briefs, KPI outcomes flow into episodic memory. Prompt / persona / rubric drift uses Eights' propose → evaluate → commit → rollback flow. |
-| Pair-programmer (engineering harness) | `C:\AiAppDeployments\pair-programmer\` | Source of agent / skill / team / hooks conventions. Borrowed verbatim. |
-| RLM-Creative (creative production) | `C:\AiAppDeployments\RLM-Creative\` | Downstream asset-production delegate via Hydra `creative` squad. Source of `marketing-expertise`, `aesthetic-archetypes`, `creative-brief-protocol`. |
+| Hydra (orchestrator) | `<AIAPP_BASE>/Hydra/` | Squad-pack consumer — 5 `marketing-*` squads register here. |
+| ExecutiveSuite (C-suite) | `<AIAPP_BASE>/ExecutiveSuite/` | Strategic CMO upstream; MarketBliss is the operational layer beneath it. |
+| TheEights (memory + evolution) | `<AIAPP_BASE>/TheEights/` | All campaign decisions, briefs, KPI outcomes flow into episodic memory. Prompt / persona / rubric drift uses Eights' propose → evaluate → commit → rollback flow. |
+| Pair-programmer (engineering harness) | `<AIAPP_BASE>/pair-programmer/` | Source of agent / skill / team / hooks conventions. Borrowed verbatim. |
+| RLM-Creative (creative production) | `<AIAPP_BASE>/RLM-Creative/` | Downstream asset-production delegate via Hydra `creative` squad. Source of `marketing-expertise`, `aesthetic-archetypes`, `creative-brief-protocol`. |
 
-Cross-squad communication uses the typed envelopes defined in `C:\AiAppDeployments\Hydra\hydra_core\schemas.py`:
+Cross-squad communication uses the typed envelopes defined in `<AIAPP_BASE>/Hydra/hydra_core/schemas.py`:
 
 - **Accept** (inbound): `Handoff`, `HITLRequest`, `CSuiteDecisionPacket`, `CreativeBrief`, `MarketBrief` (MarketBliss extension).
 - **Emit** (outbound): `DecisionRecord` (immutable consensus), `CreativeBrief` (refined), `ShotList` / `AssetJob` (asset handoff to `creative` squad), `HITLRequest` (escalation).
@@ -154,7 +154,7 @@ The adapter under `integrations/eights-bridge/` is a stub in v1; daemon hookup i
 
 ## 9. Hydra wiring
 
-Each of the 5 squad packs uses `entrypoint: claude-skill` and `source_pack: C:\AiAppDeployments\MarketBliss`, mirroring the existing `creative` squad pattern. Router keywords are documented in `integrations/hydra-router-patch.md` — the user applies the patch to `C:\AiAppDeployments\Hydra\hydra_core\router.py:_KEYWORDS`.
+Each of the 5 squad packs uses `entrypoint: claude-skill` and `source_pack: https://github.com/lebobo88/MarketBliss`, mirroring the existing `creative` squad pattern. Router keywords are documented in `integrations/hydra-router-patch.md` — the user applies the patch to `<AIAPP_BASE>/Hydra/hydra_core/router.py:_KEYWORDS`.
 
 ---
 

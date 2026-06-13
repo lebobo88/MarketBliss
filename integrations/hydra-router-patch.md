@@ -4,7 +4,7 @@
 
 MarketBliss ships 5 Hydra squad packs (`marketing-research`,
 `marketing-strategy`, `marketing-creative`, `marketing-production`,
-`marketing-ops`) under `C:\AiAppDeployments\MarketBliss\squads\`. For
+`marketing-ops`) under `<AIAPP_BASE>/MarketBliss/squads/`. For
 Hydra's router to deterministically route marketing prompts to the right
 squad — instead of falling through to the LLM-fallback classifier — its
 `_KEYWORDS` dict needs 5 new tuples.
@@ -12,7 +12,7 @@ squad — instead of falling through to the LLM-fallback classifier — its
 The router lives at:
 
 ```
-C:\AiAppDeployments\Hydra\hydra_core\router.py
+<AIAPP_BASE>/Hydra/hydra_core/router.py
 ```
 
 The `_KEYWORDS` dict is defined near the top of the file (around line 25).
@@ -68,7 +68,7 @@ Notes on a few keywords that overlap with existing tuples:
 
 ## Patch instructions
 
-1. Open `C:\AiAppDeployments\Hydra\hydra_core\router.py`.
+1. Open `<AIAPP_BASE>/Hydra/hydra_core/router.py`.
 2. Locate the `_KEYWORDS = {` block (around line 25).
 3. Add the 5 tuples above as new keys inside the dict (order doesn't matter;
    convention is to append at the end before the closing `}`).

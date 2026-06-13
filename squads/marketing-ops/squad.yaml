@@ -5,7 +5,7 @@ description: >
   Media buying, budget allocation, bid optimization, channel mix, lifecycle
   cadence, measurement plan. Consumes CreativeBrief + DecisionRecord; emits
   DecisionRecord envelopes back to ExecutiveSuite CMO.
-source_pack: C:\AiAppDeployments\MarketBliss
+source_pack: https://github.com/lebobo88/MarketBliss
 entrypoint: claude-skill
 industries: [marketing, advertising, b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
 

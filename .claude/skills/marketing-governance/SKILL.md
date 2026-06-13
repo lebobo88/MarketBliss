@@ -240,4 +240,4 @@ ls output/campaigns/<id>/decisions/
 - `brand-safety` (verdict schema, regulated rules)
 - `experimentation-design` (attribution-soundness criteria)
 - `media-mix-modeling` (budget-cap criteria)
-- Hydra schemas: `C:\AiAppDeployments\Hydra\hydra_core\schemas.py`
+- Hydra schemas: `<AIAPP_BASE>/Hydra/hydra_core/schemas.py`

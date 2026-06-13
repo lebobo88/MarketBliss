@@ -6,7 +6,7 @@ description: >
   Owns shot lists, talent and IP releases, locations, scheduling, budgets, post-production briefs.
   Converts an approved CreativeBrief into a fully-clearance-checked, schedule-bound ShotList + AssetJob
   envelope pair that Hydra's creative squad (RLM) can execute against. Does not generate assets itself.
-source_pack: C:\AiAppDeployments\MarketBliss
+source_pack: https://github.com/lebobo88/MarketBliss
 entrypoint: claude-skill
 industries: [media, film, photography, cinematography, advertising, broadcast, OOH, production, marketing]
 

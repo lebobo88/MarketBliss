@@ -35,14 +35,14 @@ The 12 actor slugs are listed below and exported as `ACTOR_SLUGS` from
 ## What this becomes in v2
 
 A real adapter that mirrors the existing TheEights bridges under
-`C:\AiAppDeployments\TheEights\daemon\src\adapters\`:
+`<AIAPP_BASE>/TheEights/daemon/src/adapters/`:
 
 - `pp-bridge.ts` (pair-programmer)
 - `execsuite-bridge.ts` (ExecutiveSuite)
 - `rlm-bridge.ts` (RLM-Creative siblings)
 
 When v2 lands, this stub is moved/copied into
-`C:\AiAppDeployments\TheEights\daemon\src\adapters\marketbliss-bridge.ts` and
+`<AIAPP_BASE>/TheEights/daemon/src/adapters/marketbliss-bridge.ts` and
 this directory becomes a thin client wrapper.
 
 ## The 12 actor slugs and their domains

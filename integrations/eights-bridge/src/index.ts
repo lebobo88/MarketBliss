@@ -7,8 +7,8 @@
  * is no in-process daemon hookup yet.
  *
  * In v2, this file becomes a real bridge that mirrors the pattern used by
- *   - C:\AiAppDeployments\TheEights\daemon\src\adapters\pp-bridge.ts
- *   - C:\AiAppDeployments\TheEights\daemon\src\adapters\execsuite-bridge.ts
+ *   - <AIAPP_BASE>/TheEights/daemon/src/adapters/pp-bridge.ts
+ *   - <AIAPP_BASE>/TheEights/daemon/src/adapters/execsuite-bridge.ts
  *
  * Responsibilities in v2:
  *   1. Listen to MarketBliss `progress/events.jsonl` and `output/` writes.

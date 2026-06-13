@@ -143,5 +143,5 @@ The `prompt_seed` is a free-text string consumed by ComfyUI / gemini-image promp
 
 ## Reference
 
-- Frontend-design tokens reference: `C:\AiAppDeployments\RLM-Creative\.claude\skills\frontend-design\` (downstream consumer).
-- Hydra `creative` squad asset spec: `C:\AiAppDeployments\Hydra\squads\creative\squad.yaml`.
+- Frontend-design tokens reference: `<AIAPP_BASE>/RLM-Creative/.claude/skills/frontend-design/` (downstream consumer).
+- Hydra `creative` squad asset spec: `<AIAPP_BASE>/Hydra/squads/creative/squad.yaml`.

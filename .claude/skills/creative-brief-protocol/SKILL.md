@@ -11,7 +11,7 @@ allowed-tools:
 
 # Creative Brief Protocol Skill
 
-Defines the canonical `CreativeBrief` markdown template used by `campaign-strategist`, `brand-narrative`, and `contextual-copywriter`. The markdown serializes into the typed `CreativeBrief` envelope defined in `C:\AiAppDeployments\Hydra\hydra_core\schemas.py` and is the artifact handed to Hydra's `creative` squad for asset production.
+Defines the canonical `CreativeBrief` markdown template used by `campaign-strategist`, `brand-narrative`, and `contextual-copywriter`. The markdown serializes into the typed `CreativeBrief` envelope defined in `<AIAPP_BASE>/Hydra/hydra_core/schemas.py` and is the artifact handed to Hydra's `creative` squad for asset production.
 
 **Invariant**: every section below maps 1:1 to a field in the envelope. Adding sections requires an evolution proposal on the schema (`eights.evolution.propose`).
 
@@ -156,7 +156,7 @@ class CreativeBrief(BaseModel):
     context_refs: list[MemoryRef]                    # not blobs
 ```
 
-The full Pydantic class lives in `C:\AiAppDeployments\Hydra\hydra_core\schemas.py`. Changes to either the markdown or the schema MUST update both in lockstep.
+The full Pydantic class lives in `<AIAPP_BASE>/Hydra/hydra_core/schemas.py`. Changes to either the markdown or the schema MUST update both in lockstep.
 
 ## 3. Brief-Type Decision Rule
 
@@ -210,4 +210,4 @@ Per AGENTS.md sec 10: once `brand-safety-compliance` and CMO have approved a bri
 - `brand-safety` (Guardrails)
 - `marketing-attribution` (KPI measurement method)
 - `marketing-governance` (Approval gate definitions)
-- Hydra envelope: `C:\AiAppDeployments\Hydra\hydra_core\schemas.py`
+- Hydra envelope: `<AIAPP_BASE>/Hydra/hydra_core/schemas.py`

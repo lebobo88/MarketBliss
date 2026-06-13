@@ -18,7 +18,7 @@ Convene a virtual marketing board on a topic. Attendees: `marketing-supervisor` 
 
 ### 1. Parse Arguments
 - Extract agenda topic (free text, first positional arg).
-- `--attendees` — comma-separated MarketBliss agent slugs. Valid: `marketing-supervisor`, `market-intelligence`, `audience-persona`, `seo-analyst`, `campaign-strategist`, `analytics-experimentation`, `contextual-copywriter`, `brand-narrative`, `media-buyer-bidder`, `lifecycle-crm`, `brand-safety-compliance`, `memory-steward`. Also `cmo` (resolves to `C:\AiAppDeployments\ExecutiveSuite\.claude\agents\cmo.md`).
+- `--attendees` — comma-separated MarketBliss agent slugs. Valid: `marketing-supervisor`, `market-intelligence`, `audience-persona`, `seo-analyst`, `campaign-strategist`, `analytics-experimentation`, `contextual-copywriter`, `brand-narrative`, `media-buyer-bidder`, `lifecycle-crm`, `brand-safety-compliance`, `memory-steward`. Also `cmo` (resolves to `<AIAPP_BASE>/ExecutiveSuite/.claude/agents/cmo.md`).
 - `--format`:
   - `quick` — 3-5 sentences per perspective, single recommendation.
   - `full` (default) — comprehensive analysis, decision log, action items.

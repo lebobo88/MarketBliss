@@ -17,12 +17,12 @@ runtime:
   # The mcp_servers/marketbliss/ module DOES NOT YET EXIST in Hydra; it must be authored
   # in P9 following the _pack_shim pattern. See manifests/MARKETBLISS-SURFACE.md.
   entrypoint: "mcp_servers/marketbliss/__main__.py"
-  cwd: "C:/AiAppDeployments/Hydra"
+  cwd: "${HYDRA_ROOT}"
   # Env: mirrors the pattern of other pack-shim servers.
   # HYDRA_MB_ROOT points to the MarketBliss pack root (consistent with HYDRA_ES_ROOT etc.)
   env:
-    PYTHONPATH: "C:/AiAppDeployments/Hydra"
-    HYDRA_MB_ROOT: "C:/AiAppDeployments/MarketBliss"
+    PYTHONPATH: "${HYDRA_ROOT}"
+    HYDRA_MB_ROOT: "${HYDRA_MB_ROOT}"
   healthProbe:
     type: mcp-tool-call
     # Intended: "mb.ping" mirrors es.ping / senate.ping / rlm.ping / xenia.ping.
@@ -72,12 +72,12 @@ audit:
   dedupeKeyField: "relative"
 
 governance:
-  # Constitution path: relative to runtime.cwd (C:/AiAppDeployments/Hydra).
-  # Destination after merge pass: C:/AiAppDeployments/MarketBliss/CONSTITUTION.md
+  # Constitution path: relative to runtime.cwd (${HYDRA_ROOT}).
+  # Destination after merge pass: ${HYDRA_MB_ROOT}/CONSTITUTION.md
   # (authored at manifests/constitutions/marketbliss.CONSTITUTION.md — see README).
   # Path traversal from Hydra cwd:
-  # resolve(join("C:/AiAppDeployments/Hydra","../MarketBliss/CONSTITUTION.md"))
-  # = C:/AiAppDeployments/MarketBliss/CONSTITUTION.md (correct).
+  # resolve(join("${HYDRA_ROOT}","../MarketBliss/CONSTITUTION.md"))
+  # = ${HYDRA_MB_ROOT}/CONSTITUTION.md (correct).
   # Same dotdot-traversal friction as xenia/rlm-creative; see GOVERNANCE-ROUTING.md §validator-friction.
   constitutionPath: "../MarketBliss/CONSTITUTION.md"
   # marketbliss server has no dedicated attest tool.
