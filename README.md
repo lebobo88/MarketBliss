@@ -98,32 +98,93 @@ graph TD
 
 ## Ecosystem Integration
 
-MarketBliss is one node in a larger multi-agent ecosystem. Each project has a distinct responsibility, and they communicate via typed envelopes.
+MarketBliss is one node in a mesh of **nine sibling AI systems** bound together by a tenth binding layer, **AgentMesh**. Each system has a distinct responsibility, and they communicate via typed envelopes and `MemoryRef` handles. MarketBliss is the operational marketing wing — the source pack behind Hydra's five `marketing-*` squads.
+
+The siblings, by tier:
+
+**Governance & substrate**
+- [TheEights](https://github.com/lebobo88/TheEights) — shared memory / audit / identity / governance / self-evolution substrate; the root of trust. MarketBliss writes campaign decisions, briefs, and KPI outcomes into episodic memory here and evolves prompts/personas through its propose → evaluate → commit → rollback flow.
+- [AgentSmith](https://github.com/lebobo88/AgentSmith) — artifact inspection, the N1..N10 fail-closed invariants, quarantine + sentinel (the Matrix warden). Validates MarketBliss artifacts (agents, skills, squad packs) structurally before they enter the mesh.
+
+**Orchestration & engineering**
+- [Hydra](https://github.com/lebobo88/Hydra) — LangGraph multi-squad supervisor; routes, governs, synthesizes. Hosts MarketBliss's five `marketing-*` squads and routes `ShotList`/`AssetJob` envelopes onward to RLM-Creative.
+- [pair-programmer](https://github.com/lebobo88/pair-programmer) — best-of-N engineering harness; Hydra's "engineering" squad. Source of MarketBliss's agent / skill / team / hooks conventions.
+
+**Squad source-packs (each is a Hydra squad)**
+- [ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite) — C-suite executive decision support; the "executive" squad. Its strategic CMO issues `CSuiteDecisionPacket` directives to MarketBliss and receives `DecisionRecord` results.
+- [RLM-Creative](https://github.com/lebobo88/RLM-Creative) — creative / media studio; the "garland" squad. Generates assets from the `ShotList`/`AssetJob` envelopes MarketBliss emits (MarketBliss owns production *planning*, not asset *generation*).
+- **MarketBliss** (this repo) — enterprise marketing platform; the five "marketing-*" squads (research, strategy, creative, production, ops).
+- [Senate](https://github.com/lebobo88/Senate) — PhD-level legal wing, "the Curia": 12 jurists (9 primary + 3 consilium) under the Twelve Tables, resolving conflict by the Law of Citations (majority prevails; Papinian breaks ties; dissents preserved) gatekept by the Tribune's Veto (HITL); the "legal-compliance" squad.
+- [Xenia](https://github.com/lebobo88/Xenia-Support) — customer-support "Hearth": an 11-agent support crew for ticket triage, recommendation, VoC, and approval-gated execution with WS-AUTH capability enforcement; the "customer-support" squad.
+
+**Binding layer (the tenth)**
+- [AgentMesh](https://github.com/lebobo88/AgentMesh) — the thin, governed control plane that unifies the nine systems behind one registry, one lifecycle supervisor, one observability plane, one federated audit timeline, one external protocol edge, and one operator console. See the [Binding Control Plane](#agentmesh--the-binding-control-plane) section below.
 
 ```mermaid
 graph LR
-    ES["<b>ExecutiveSuite</b><br/><i>Strategic CMO</i><br/>C-suite decision layer"]
-    MB["<b>MarketBliss</b><br/><i>Operational Marketing</i><br/>15 agents · 5 squads"]
-    HY["<b>Hydra</b><br/><i>Orchestrator</i><br/>Routes & dispatches"]
-    TE["<b>TheEights</b><br/><i>Memory + Evolution</i><br/>Episodic · Semantic"]
-    RLM["<b>RLM-Creative</b><br/><i>Creative Production</i><br/>ComfyUI · Gemini Image"]
-    PP["<b>pair-programmer</b><br/><i>Engineering Harness</i><br/>Conventions & quality"]
+    subgraph gov ["Governance & Substrate"]
+        TE["<b>TheEights</b><br/><i>Memory · Audit · Identity</i><br/>Root of trust"]
+        AS["<b>AgentSmith</b><br/><i>N1..N10 invariants</i><br/>Inspect · Quarantine"]
+    end
+
+    subgraph orch ["Orchestration & Engineering"]
+        HY["<b>Hydra</b><br/><i>LangGraph supervisor</i><br/>Routes & dispatches"]
+        PP["<b>pair-programmer</b><br/><i>Best-of-N harness</i><br/>engineering squad"]
+    end
+
+    subgraph squads ["Squad Source-Packs"]
+        ES["<b>ExecutiveSuite</b><br/><i>Strategic CMO</i><br/>executive squad"]
+        MB["<b>MarketBliss</b><br/><i>Operational Marketing</i><br/>15 agents · 5 squads"]
+        RLM["<b>RLM-Creative</b><br/><i>Creative Studio</i><br/>garland squad"]
+        SEN["<b>Senate</b><br/><i>Legal Curia</i><br/>legal-compliance squad"]
+        XEN["<b>Xenia</b><br/><i>Support Hearth</i><br/>customer-support squad"]
+    end
+
+    AM["<b>AgentMesh</b><br/><i>Binding Control Plane</i><br/>Registry · Lifecycle · Observability"]
 
     ES -->|"CSuiteDecisionPacket"| MB
     MB -->|"DecisionRecord"| ES
     HY <-->|"orchestrates 5 squads"| MB
     MB -->|"ShotList + AssetJob"| HY
     HY -->|"asset execution"| RLM
+    HY -.->|"hosts squads"| ES
+    HY -.->|"hosts squads"| SEN
+    HY -.->|"hosts squads"| XEN
+    HY -.->|"engineering"| PP
     TE <-->|"episodic + semantic memory"| MB
+    AS -.->|"inspects artifacts"| MB
     PP -.->|"conventions borrowed"| MB
 
-    style ES fill:#e3f2fd,stroke:#0366d6,stroke-width:2px
+    AM ===|"enrolls + observes"| HY
+    AM -.->|"one registry · lifecycle · audit"| gov
+    AM -.->|"one registry · lifecycle · audit"| squads
+
     style MB fill:#f0f4ff,stroke:#0366d6,stroke-width:3px
+    style ES fill:#e3f2fd,stroke:#0366d6,stroke-width:2px
     style HY fill:#fff3e0,stroke:#e36209,stroke-width:2px
     style TE fill:#f3e5f5,stroke:#6f42c1,stroke-width:2px
+    style AS fill:#ede7f6,stroke:#6f42c1,stroke-width:2px
     style RLM fill:#fce4ec,stroke:#d73a49,stroke-width:2px
+    style SEN fill:#e0f2f1,stroke:#00897b,stroke-width:2px
+    style XEN fill:#fff8e1,stroke:#ffb300,stroke-width:2px
     style PP fill:#e8f5e9,stroke:#28a745,stroke-width:2px
+    style AM fill:#eceff1,stroke:#455a64,stroke-width:2px
 ```
+
+### AgentMesh — the binding control plane
+
+[AgentMesh](https://github.com/lebobo88/AgentMesh) is the tenth layer: the thin, governed **control plane** that binds the nine sibling systems together. It unifies them behind:
+
+- **ONE registry** — SQLite at `~/.agentmesh/state.db`; AgentMesh is the sole writer of `~/.hydra/backends.json`.
+- **ONE lifecycle supervisor** — Win32 Job Objects + crash-loop breaker + health probes.
+- **ONE observability plane** — OTEL traces + structured logs.
+- **ONE federated, read-only audit timeline** — stitched from the TheEights / AgentSmith / Hydra chains.
+- **ONE external protocol edge** — A2A v0.3/v1.0, REST, MCP-over-HTTP.
+- **ONE operator web console.**
+
+Systems **enroll** by installing a root `mesh-manifest.yaml` validated against AgentMesh's `mesh-manifest.schema.json` — **fail-closed**: JSON-Schema validation **+** constitution attestation (via TheEights) **+** AgentSmith structural inspection must all pass. MarketBliss carries such a manifest at its repository root (`mesh-manifest.yaml`, `kind: SiblingManifest`, `id: marketbliss`), declaring its intended `marketbliss` backends key and `mb.ping` health probe.
+
+Crucially, **AgentMesh enforces no governance of its own.** Authority stays with the precedence chain **TheEights → AgentSmith → Hydra**. AgentMesh routes and observes; it does not arbitrate.
 
 ---
 
@@ -354,11 +415,15 @@ CLAUDE.md         Claude-specific @AGENTS.md import shim
 
 | Project | Role | Link |
 |---------|------|------|
+| **TheEights** | Memory + evolution substrate — episodic, semantic, prompt drift; the root of trust | [github.com/lebobo88/TheEights](https://github.com/lebobo88/TheEights) |
+| **AgentSmith** | Artifact inspection — N1..N10 fail-closed invariants, quarantine + sentinel | [github.com/lebobo88/AgentSmith](https://github.com/lebobo88/AgentSmith) |
 | **Hydra** | Orchestrator — discovers and routes to MarketBliss's 5 squad packs | [github.com/lebobo88/Hydra](https://github.com/lebobo88/Hydra) |
-| **ExecutiveSuite** | Strategic CMO upstream — issues `CSuiteDecisionPacket` directives | [github.com/lebobo88/ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite) |
-| **TheEights** | Memory + evolution substrate — episodic, semantic, and prompt drift | [github.com/lebobo88/TheEights](https://github.com/lebobo88/TheEights) |
-| **pair-programmer** | Engineering harness — source of agent/skill/team conventions | [github.com/lebobo88/pair-programmer](https://github.com/lebobo88/pair-programmer) |
-| **RLM-Creative** | Creative production — generates assets from `ShotList`/`AssetJob` envelopes | [github.com/lebobo88/RLM-Creative](https://github.com/lebobo88/RLM-Creative) |
+| **pair-programmer** | Engineering harness — source of agent/skill/team conventions; Hydra's "engineering" squad | [github.com/lebobo88/pair-programmer](https://github.com/lebobo88/pair-programmer) |
+| **ExecutiveSuite** | Strategic CMO upstream — issues `CSuiteDecisionPacket` directives; the "executive" squad | [github.com/lebobo88/ExecutiveSuite](https://github.com/lebobo88/ExecutiveSuite) |
+| **RLM-Creative** | Creative production — generates assets from `ShotList`/`AssetJob` envelopes; the "garland" squad | [github.com/lebobo88/RLM-Creative](https://github.com/lebobo88/RLM-Creative) |
+| **Senate** | Legal Curia — 12 jurists under the Twelve Tables; the "legal-compliance" squad | [github.com/lebobo88/Senate](https://github.com/lebobo88/Senate) |
+| **Xenia** | Support Hearth — 11-agent customer-support crew; the "customer-support" squad | [github.com/lebobo88/Xenia-Support](https://github.com/lebobo88/Xenia-Support) |
+| **AgentMesh** | Binding control plane — one registry, lifecycle, observability, audit, protocol edge, console | [github.com/lebobo88/AgentMesh](https://github.com/lebobo88/AgentMesh) |
 
 ---
 
