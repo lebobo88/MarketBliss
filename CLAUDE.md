@@ -8,8 +8,8 @@ This file is the Claude-Code-specific entry point. All shared behavioral contrac
 
 ## Claude-specific notes
 
-- **Default model selection**: agents in `.claude/agents/*.md` carry their own `model:` frontmatter (opus for gatekeeper / orchestrator roles; sonnet for specialists; haiku for `memory-steward`). Honor it.
-- **Skill invocation**: when a user types `/<skill-name>` (e.g. `/marketing-expertise`), invoke via the Skill tool. Don't guess skill names from training data — only invoke skills listed in the current `.claude/skills/` directory or surfaced in the system's available-skills reminder.
+- **Default model selection**: agents in `plugins/marketbliss/agents/*.md` carry their own `model:` frontmatter (opus for gatekeeper / orchestrator roles; sonnet for specialists; haiku for `memory-steward`). Honor it.
+- **Skill invocation**: when a user types `/<skill-name>` (e.g. `/marketing-expertise`), invoke via the Skill tool. Don't guess skill names from training data — only invoke skills listed in `plugins/marketbliss/skills/` or surfaced in the system's available-skills reminder.
 - **Sub-agent dispatch**: use the Agent tool with `subagent_type` matching the slug of one of the 15 MarketBliss agents (e.g. `subagent_type: campaign-strategist`). For multi-perspective synthesis, prefer the `marketing-supervisor` orchestrator over spawning parallel agents directly.
 - **Hydra envelopes**: when sending a `CreativeBrief` / `ShotList` / `AssetJob` to Hydra's `creative` squad, use the Hydra MCP tools (`mcp__hydra__*`) — do not write the envelope directly into another project's directory.
 - **Memory writes**: route all persistent memory through `mcp__eights__eights_memory_*` tools. Don't write campaign decisions to scratch files outside `output/`.

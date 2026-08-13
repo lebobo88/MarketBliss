@@ -12,7 +12,7 @@ MarketBliss is the **operational marketing organization** for the AiAppDeploymen
 
 MarketBliss is **not**:
 
-- The strategic CMO. That role lives in `<AIAPP_BASE>/ExecutiveSuite/.claude/agents/cmo.md`. MarketBliss receives `CSuiteDecisionPacket` / `CreativeBrief` envelopes from that CMO and emits `DecisionRecord` envelopes back.
+- The strategic CMO. That role lives in `<AIAPP_BASE>/ExecutiveSuite/plugins/executive-suite/agents/cmo.md`. MarketBliss receives `CSuiteDecisionPacket` / `CreativeBrief` envelopes from that CMO and emits `DecisionRecord` envelopes back.
 - The creative-production studio. Image / video / cinematography asset **generation** is delegated to Hydra's existing `creative` squad (`<AIAPP_BASE>/Hydra/squads/creative/`) which fronts RLM-Creative (ComfyUI, gemini-image, frontend-design). MarketBliss's own `marketing-production` squad owns the production *planning* layer (shot lists, talent / IP releases, locations, schedules, budgets, post-production briefs) and hands the resulting `ShotList` + `AssetJob` envelope pair downstream to that Hydra squad.
 - A pipeline runner. Hydra is the orchestrator. Pair-programmer is the code-quality harness. TheEights is the memory + evolution substrate.
 
@@ -89,7 +89,7 @@ Strict role boundaries: `gatekeeper` agents can block gates and require explicit
 
 ## 5. Skill roster
 
-Skills under `.claude/skills/<name>/SKILL.md`. User-invocable unless noted. Agents declare their skill set in frontmatter.
+Skills under `plugins/marketbliss/skills/<name>/SKILL.md`. User-invocable unless noted. Agents declare their skill set in frontmatter.
 
 | Skill | Purpose |
 |---|---|

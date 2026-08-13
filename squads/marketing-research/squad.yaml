@@ -6,7 +6,7 @@ description: >
   Produces MarketBrief envelopes consumed by marketing-strategy and downstream
   squads.
 source_pack: https://github.com/lebobo88/MarketBliss
-entrypoint: claude-skill
+entrypoint: claude-native
 industries: [marketing, advertising, b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance]
 
 agents:

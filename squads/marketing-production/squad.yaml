@@ -7,7 +7,7 @@ description: >
   Converts an approved CreativeBrief into a fully-clearance-checked, schedule-bound ShotList + AssetJob
   envelope pair that Hydra's creative squad (RLM) can execute against. Does not generate assets itself.
 source_pack: https://github.com/lebobo88/MarketBliss
-entrypoint: claude-skill
+entrypoint: claude-native
 industries: [media, film, photography, cinematography, advertising, broadcast, OOH, production, marketing]
 
 agents:

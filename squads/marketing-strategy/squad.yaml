@@ -6,7 +6,7 @@ description: >
   channel-mix decisions. Consumes MarketBrief; emits CreativeBrief for the
   marketing-creative squad and downstream Hydra creative.
 source_pack: https://github.com/lebobo88/MarketBliss
-entrypoint: claude-skill
+entrypoint: claude-native
 industries: [marketing, advertising, b2b-saas, dtc-ecommerce, professional-services, regulated-health-finance, creative-production, advertising-commercial]
 
 agents:
