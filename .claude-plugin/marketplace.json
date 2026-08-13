@@ -1,0 +1,6 @@
+{
+  "name": "marketbliss-local",
+  "owner": {"name": "lebobo88"},
+  "description": "Local marketplace for the MarketBliss canonical Claude plugin.",
+  "plugins": [{"name": "marketbliss", "source": "./plugins/marketbliss"}]
+}
