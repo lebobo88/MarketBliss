@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "runtime": "hydra-source-pack",
+  "plugin_root": "plugins/marketbliss",
+  "rubric_provider": {
+    "source": "MarketBliss",
+    "source_directory": "plugins/marketbliss/rubrics",
+    "runtime": "Hydra judge registry",
+    "registration_handoff": "integrations/hydra-rubric-registry-patch.md"
+  },
+  "external_components": [
+    {
+      "name": "docs-author",
+      "kind": "agent",
+      "provider": "Hydra Forge",
+      "verification": {
+        "relative_path": "Hydra/hydra_core/heads.py",
+        "required_pattern": "HeadAlias(\"docs-author\""
+      }
+    },
+    {
+      "name": "spec-author",
+      "kind": "agent",
+      "provider": "pair-programmer",
+      "verification": {
+        "relative_path": "pair-programmer/.claude/agents/spec-author.md",
+        "required_pattern": "name: spec-author"
+      }
+    },
+    {
+      "name": "executive-protocol",
+      "kind": "skill",
+      "provider": "ExecutiveSuite",
+      "verification": {
+        "relative_path": "ExecutiveSuite/plugins/executive-suite/skills/executive-protocol/SKILL.md",
+        "required_pattern": "name: executive-protocol"
+      }
+    },
+    {
+      "name": "frontend-design",
+      "kind": "design capability",
+      "provider": "RLM-Creative / Hydra Garland",
+      "verification": {
+        "relative_path": "RLM-Creative/squad.yaml",
+        "required_pattern": "name: frontend-design"
+      }
+    }
+  ]
+}

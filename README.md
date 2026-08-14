@@ -266,7 +266,7 @@ graph LR
 
 ## Skills
 
-15 reusable skill bundles, each in `.claude/skills/<name>/SKILL.md`:
+15 reusable skill bundles, each in `plugins/marketbliss/skills/<name>/SKILL.md`:
 
 | Skill | Purpose |
 |-------|---------|
@@ -403,7 +403,7 @@ output/           All generated artifacts
   research/
   campaigns/<campaign-id>/{brief,strategy,assets,measurement}/
 progress/         Run state, checkpoints, audit stream (events.jsonl)
-hooks.json        SessionStart / Pre+PostToolUse / PreCompact / Stop hooks
+plugins/marketbliss/hooks/hooks.json  Claude Code plugin hooks
 PROJECT_MASTER.md Section-9 master plan, 16-section taxonomy coverage
 AGENTS.md         Cross-tool behavioral contract (read this first)
 CLAUDE.md         Claude-specific @AGENTS.md import shim

@@ -52,4 +52,4 @@ invoke:
   fallback_commands:
     - "/launch-playbook"
     - "/marketing-board"
-  output_dir: "output/campaigns/{topic}/brief-{date}.md"
+  output_dir: "output/campaigns/{campaign_id}/brief.md"

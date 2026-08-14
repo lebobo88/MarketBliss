@@ -17,7 +17,7 @@ Generate a cinematic, scroll-driven campaign microsite **specification** (not th
 
 ## Canonical Reference
 
-Read `.claude/skills/aesthetic-archetypes/SKILL.md` for archetype-by-archetype surface / typography / motion / texture / palette specs. This command produces a microsite **spec** that downstream agents and Hydra's `creative` squad execute against.
+Read `plugins/marketbliss/skills/aesthetic-archetypes/SKILL.md` for archetype-by-archetype surface / typography / motion / texture / palette specs. This command produces a microsite **spec** that downstream agents and Hydra's `creative` squad execute against.
 
 ## Argument Parsing
 

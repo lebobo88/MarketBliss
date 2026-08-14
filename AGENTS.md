@@ -38,11 +38,15 @@ Cross-squad communication uses the typed envelopes defined in `<AIAPP_BASE>/Hydr
 ## 3. Directory layout
 
 ```
-.claude/
+plugins/marketbliss/
+  .claude-plugin/plugin.json  Claude Code plugin manifest
   agents/      15 specialist persona markdown files
   skills/      15 reusable skill bundles (SKILL.md per dir)
   commands/    9 slash-command entry points
   teams/       5 pair-programmer-style team YAMLs (stage / gate / generator / judge)
+  hooks/       Claude Code plugin hooks
+  contracts/   declared cross-pack dependency providers
+  rubrics/     versioned MarketBliss rubric sources
 squads/        5 Hydra squad packs (one squad.yaml per dir)
 profiles/      6 industry profile YAMLs
 integrations/
@@ -53,7 +57,6 @@ output/        all generated artifacts land here (mirrors RLM convention)
   research/
   campaigns/<campaign-id>/{brief,strategy,assets,measurement}/
 progress/      run-state files (pipeline-state.json, checkpoint.json, config.json, events.jsonl)
-hooks.json     SessionStart / Pre + PostToolUse / PreCompact / Stop hooks
 PROJECT_MASTER.md     Section-9 master plan, 16-section taxonomy coverage
 taxonomy_blueprint.md   adopted verbatim from pair-programmer
 AGENTS.md      this file
@@ -154,7 +157,7 @@ The adapter under `integrations/eights-bridge/` is a stub in v1; daemon hookup i
 
 ## 9. Hydra wiring
 
-Each of the 5 squad packs uses `entrypoint: claude-skill` and `source_pack: https://github.com/lebobo88/MarketBliss`, mirroring the existing `creative` squad pattern. Router keywords are documented in `integrations/hydra-router-patch.md` — the user applies the patch to `<AIAPP_BASE>/Hydra/hydra_core/router.py:_KEYWORDS`.
+Each of the 5 squad packs uses `entrypoint: claude-native` and `source_pack: https://github.com/lebobo88/MarketBliss`. The Claude Code components live under `plugins/marketbliss/`; external providers are declared in `plugins/marketbliss/contracts/ecosystem-dependencies.json`. Router keywords are documented in `integrations/hydra-router-patch.md`.
 
 ---
 

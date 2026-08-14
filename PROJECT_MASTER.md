@@ -52,11 +52,11 @@
 - 6 industry profile YAMLs (all patched to add `default_squads` field).
 - TheEights project registration + adapter stub.
 - Hydra router-patch documentation (applied manually by operator).
-- AGENTS.md + CLAUDE.md + this file + hooks.json + README.md.
+- AGENTS.md + CLAUDE.md + this file + plugins/marketbliss/hooks/hooks.json + README.md.
 
 **Out of scope (v1)** — explicitly deferred:
 - External ad-platform integrations (Google Ads, Meta, GA4, HubSpot, Segment CDP).
-- Live MCP daemon for MarketBliss (`mcp_servers/marketing/`) — claude-skill entrypoint covers v1.
+- Live MCP daemon for MarketBliss (`mcp_servers/marketing/`) — claude-native source-pack entrypoint covers v1.
 - Eights-bridge daemon hookup (stub only).
 - Full rubric library (gate IDs declared, rubric bodies in v2).
 - UI / web console for campaign artifacts.
@@ -164,7 +164,7 @@ Verification matrix (run before declaring v1 complete):
 
 - **Audit stream**: `progress/events.jsonl` (append-only, RLM-pattern).
 - **Run state**: `progress/pipeline-state.json` + `checkpoint.json` (compaction-safe generation counter).
-- **Hooks**: `hooks.json` declares SessionStart / Pre-+PostToolUse / PreCompact / Stop. Each hook is a thin shell command that logs to `events.jsonl` and / or calls Eights MCP tools.
+- **Hooks**: `plugins/marketbliss/hooks/hooks.json` is the Claude Code plugin hook configuration. Phase 3 installs tested handlers for the existing sealed-brief and governance invariants.
 - **Failure mode**: any agent failure surfaces a `HITLRequest`. There is no auto-retry in v1.
 
 ---
@@ -214,7 +214,7 @@ Verification matrix (run before declaring v1 complete):
 
 ## Appendix A — File manifest
 
-See `AGENTS.md` §3 for the canonical directory layout. The build manifest is the file list under `.claude/agents/`, `.claude/skills/`, `.claude/commands/`, `.claude/teams/`, `squads/`, `profiles/`, `integrations/`.
+See `AGENTS.md` §3 for the canonical directory layout. The build manifest is the file list under `plugins/marketbliss/agents/`, `plugins/marketbliss/skills/`, `plugins/marketbliss/commands/`, `plugins/marketbliss/teams/`, `squads/`, `profiles/`, `integrations/`.
 
 ---
 
